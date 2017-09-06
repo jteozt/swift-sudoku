@@ -11,6 +11,11 @@ extension Sequence {
         }
         return true
     }
-    
+
 }
 
+extension Collection where Self.Indices.Iterator.Element == Self.Index {
+    public func withIndexes() -> AnySequence<(Index, Iterator.Element)> {
+        return AnySequence(zip(self.indices, self))
+    }
+}
